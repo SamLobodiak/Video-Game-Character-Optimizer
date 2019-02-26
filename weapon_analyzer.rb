@@ -18,7 +18,7 @@
 	  	damage_per_second: value[:damage]/value[:swing_speed],
 	  	total_swings_per_stamina_bar: player[:stamina]/value[:stamina_cost],
 	  	#Room left to wear armour and be able to fast roll (25% of equip weight lets the player move fast)
-	  	leftover_weight_for_armour_and_to_fast_roll: (player[:equip_load] * 0.25) - value[:weight],
+	  	leftover_weight_for_armour_to_fast_roll: (player[:equip_load] * 0.25) - value[:weight],
 	  	#Room left to wear armour and be able to medium speed roll (50% of equip weight lets the player move medium speed)
 	  	leftover_weight_for_armour_to_medium_roll: (player[:equip_load] * 0.50) - value[:weight],
 	  	#Room left to wear armour and be able to slow roll (100% of equip weight lets the player move at slow speed)
