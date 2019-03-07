@@ -1,7 +1,7 @@
 # Video-Game-Character-Optimizer
 
 Goals for this project
-1.  Currently, I plan to play with weapon data to analyze various weapon strengths. (What is the most damaging single hit weapon, what is the highest damage per second weapon)
+1.  Currently, I plan to play with weapon data to analyze various weapon strengths. (e.g. What is the most physically damaging single hit weapon? What is the highest damage per second weapon?  What is the most damaging weapon of combined physical and elemental damage?)
 2.  In the future, I want to find what is the most damaging, per weight, per stat requirement weapon that I can use. (Find most balanced character build)
 
 ***Dark Souls information***
