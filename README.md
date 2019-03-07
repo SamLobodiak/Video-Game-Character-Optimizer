@@ -6,7 +6,7 @@ Goals for this project
 
 ***Dark Souls information***
 This project will be based on a player with an equipment load max of 100.
-This is about a level 70 characer, a roughly avergage end game player level.
+This is about a level 70 characer, a roughly average end game player level.
 
 The sum of all equipment weight worn makes a player have the mobility of either fast, mid, or slow.
 Fast mobility (fast rolling, backstepping, and running) = <25% equipment load max
