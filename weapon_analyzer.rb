@@ -1,33 +1,31 @@
-	player = {
-		health: 250,
-		stamina: 100,
-		equip_load: 75,
-	}
-	weapons = {
+player = {
+  health: 250.0,
+  stamina: 100.0,
+  equip_max: 75.0,
+}
 
-	  longsword: {damage: 80, swing_speed: 0.5, length: 3, stamina_cost: 15, weight: 3},
-	  dagger: {damage: 56, swing_speed: 0.25, length: 1, stamina_cost: 7, weight: 0.5},
-	  greatsword: {damage: 130, swing_speed: 0.8, length: 5, stamina_cost: 33, weight: 12},
-	}
+weapons_output = Hash.new
 
-	weapon_outputs = Hash.new
+temp = 0
 
-	weapons.each do |key, value|
-	  #Creating a new hash with weapon information
-	  weapon_outputs[key] = {
-	  	damage_per_second: value[:damage]/value[:swing_speed],
-	  	total_swings_per_stamina_bar: player[:stamina]/value[:stamina_cost],
-	  	#Room left to wear armour and be able to fast roll (25% of equip weight lets the player move fast)
-	  	leftover_weight_for_armour_to_fast_roll: (player[:equip_load] * 0.25) - value[:weight],
-	  	#Room left to wear armour and be able to medium speed roll (50% of equip weight lets the player move medium speed)
-	  	leftover_weight_for_armour_to_medium_roll: (player[:equip_load] * 0.50) - value[:weight],
-	  	#Room left to wear armour and be able to slow roll (100% of equip weight lets the player move at slow speed)
-	  	leftover_weight_for_armour_to_slow_roll: (player[:equip_load] * 1.00) - value[:weight],
-	  }
-	end
+#from the raw data, creating a hash of weapon names with their damage characteristics
 
-  weapon_outputs.each do |x|
-	  #Prettifying the weapon outputs for easier reading
-    puts x
-    puts " "
-  end 
+for x in weapons
+  # <=25% of equip load yields fast roll, >25% to <=50% yields medium roll, >50% to <=75% yields slow roll
+  leftover_weight_for_armour_to_fast_roll = player[:equip_max] * 0.25 - x[:weight].to_f
+  leftover_weight_for_armour_to_med_roll = player[:equip_max] * 0.50 - x[:weight].to_f
+  leftover_weight_for_armour_to_fat_roll = player[:equip_max] * 1.00 - x[:weight].to_f
+  #reqs_sum is the sum of the integers of strength, dexterity, faith, and intelligence required to wield the weapon
+  reqs_sum = 0
+  #Of this weapon, iterate through the stat requirements for it
+  for y in x[:req]
+    reqs_sum = reqs_sum + y[1]
+  end
+  #Outputting all of the data onto an output hash
+  weapons_output.merge!(x[:name] => {"atk" => x[:atk], "weight" => x[:weight], "reqs_sum" => reqs_sum, "to_fast_roll" => leftover_weight_for_armour_to_fast_roll, "to_med_roll" => leftover_weight_for_armour_to_med_roll, "to_slow_roll" => leftover_weight_for_armour_to_fat_roll})
+end
+
+puts " "
+
+#Example
+puts weapons_output["Lucerne"]
