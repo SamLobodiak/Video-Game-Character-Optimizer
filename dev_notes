@@ -1,2 +1,2 @@
 1. Input estimated melee weapon ranges as floats if you can't find the actual game data.
-2. Input estimated stamina costs to swing weapons if you can't find the actual game data.
+2. Input estimated stamina costs as floats to swing weapons if you can't find the actual game data.
