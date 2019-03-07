@@ -16,10 +16,8 @@ Slow mobility (slow "fat" speed rolling, backstepping, and running) = >=50% to <
 
 
 The resources used to equip a weapon are 2 things.
-  1. Minimum stat requirements (Strength, Dexterity, Intelligence, Faith)
-    a.  1 character level gained can be used to get 1 of the stats above.
-  2. Weight units
-    a.  Weight units bring the character closer to their moblity breakpoints of fast, mid, and slow. (e.g . The bigger the weapon the more weight units added onto your equipment load.  This leads to the player not wearing as much armor which makes them have lower defence.  I hope to optimize this and create a character that has both good attack and good defense.)
+  1. Minimum stat requirements (Strength, Dexterity, Intelligence, Faith) (1 character level gained can be used to get 1 of the stats above)
+  2. Weight units (Weight units bring the character closer to their moblity breakpoints of fast, mid, and slow. (e.g . The bigger the weapon the more weight units added onto your equipment load.  This leads to the player not wearing as much armor which makes them have lower defence.  I hope to optimize this and create a character that has both good attack and good defense.))
 
 
 After a weapon is chosen, I then plan to optimize armor with the unused weight space in concordance to the mobility breakpoints.
