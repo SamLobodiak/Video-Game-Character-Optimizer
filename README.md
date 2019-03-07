@@ -1,22 +1,26 @@
 # Video-Game-Character-Optimizer
 
-******SECTION 1*******
+Goals for this project
+1.  Currently, I plan to play with weapon data to analyze various weapon strengths. (What is the most damaging single hit weapon, what is the highest damage per second weapon)
+2.  In the future, I want to find what is the most damaging, per weight, per stat requirement weapon that I can use. (Find most balanced character build)
 
-The goal of this project is to see which weapons are optimal to use in Dark Souls for a player with an equipment load max of 100.
-This is about average for end game players.
+***Dark Souls information***
+This project will be based on a player with an equipment load max of 100.
+This is about a level 70 characer, a roughly avergage end game player level.
 
-'optimal' means what is the most damaging, per weight, per stat requirement weapon that I can use.
+The sum of all equipment weight worn makes a player have the mobility of either fast, mid, or slow.
+Fast mobility (fast rolling, backstepping, and running) = <25% equipment load max
+Mid mobility (mid speed rolling, backstepping, and running) = >=25% to <50% equipment load max
+Slow mobility (slow "fat" speed rolling, backstepping, and running) = >=50% to <75%
+
+
 
 The resources used to equip a weapon are 2 things.
   1. Minimum stat requirements (Strength, Dexterity, Intelligence, Faith)
-    a.  Each time the player levels up, they may choose to put 1 stat point into any of the stats above.
+    a.  1 character level gained can be used to get 1 of the stats above.
   2. Weight units
-    a.  The bigger the weapon the more weight units added onto your equipment load.
-        This leads to the player not wearing as much armor which makes them have lower defence
-  
-******END SECTION 1*****
+    a.  Weight units bring the character closer to their moblity breakpoints of fast, mid, and slow. (e.g . The bigger the weapon the more weight units added onto your equipment load.  This leads to the player not wearing as much armor which makes them have lower defence.  I hope to optimize this and create a character that has both good attack and good defense.)
 
 
-*****SECTION 2*****
-After a weapon is chosen, I then plan to optimize armor with the leftover weight space we can use for armour.
-*****END SECTION 2*****
+After a weapon is chosen, I then plan to optimize armor with the unused weight space in concordance to the mobility breakpoints.
+
