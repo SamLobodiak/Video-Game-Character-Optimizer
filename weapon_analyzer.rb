@@ -1,7 +1,7 @@
 player = {
   health: 250.0,
   stamina: 100.0,
-  equip_max: 75.0,
+  equip_max: 100.0,
 }
 
 weapons_output = Hash.new
