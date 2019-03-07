@@ -10,6 +10,7 @@ temp = 0
 
 #from the raw data, creating a hash of weapon names with their damage characteristics
 
+#this 'weapons' variable comes from ./weapons.rb, a long list of raw weapon data
 for x in weapons
   # <=25% of equip load yields fast roll, >25% to <=50% yields medium roll, >50% to <=75% yields slow roll
   leftover_weight_for_armour_to_fast_roll = player[:equip_max] * 0.25 - x[:weight].to_f
