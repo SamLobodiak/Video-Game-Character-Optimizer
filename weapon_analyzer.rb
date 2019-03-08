@@ -20,6 +20,11 @@ weapons_output = Hash.new
 temp = 0
 
 #from the raw data, creating a hash of weapon names with their damage characteristics
+<<<<<<< HEAD
+=======
+
+#this 'weapons' variable comes from ./weapons.rb, a long list of raw weapon data
+>>>>>>> 4a8a43f708f0cc2ed243b4312986c7a066a7f764
 for x in weapons
   weight = x[:weight]
   # <=25% of equip load yields fast roll, >25% to <=50% yields medium roll, >50% to <=75% yields slow roll
@@ -73,4 +78,9 @@ for x in weapons_output
  puts " "
 end
 
+<<<<<<< HEAD
 puts weapons_max
+=======
+#Example
+puts weapons_output["Lucerne"]
+>>>>>>> 4a8a43f708f0cc2ed243b4312986c7a066a7f764
