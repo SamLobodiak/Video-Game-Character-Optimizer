@@ -1208,11 +1208,11 @@ weapons = [{
 }, {
     "name": "Obsidian Greatsword",
     "atk": {
-        "physical": 32060,
+        "physical": 320,
         "magic": 10,
         "fire": 40,
         "lightning": 40,
-        "bonus": 10038
+        "bonus": 100
     },
     "def": {},
     "effects": {
