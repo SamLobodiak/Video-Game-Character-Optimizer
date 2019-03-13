@@ -1209,9 +1209,9 @@ weapons = [{
     "name": "Obsidian Greatsword",
     "atk": {
         "physical": 320,
-        "magic": 10,
-        "fire": 40,
-        "lightning": 40,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
         "bonus": 100
     },
     "def": {},
@@ -1229,6 +1229,7 @@ weapons = [{
     },
     "scale": {},
     "durability": 3508,
+    "weight": 8,
     "attackTypes": ["RegularSpecial"],
     "obtained": ["Obtained by cutting off the tail of Black Dragon Kalameet."],
     "aotaOnly": true

@@ -55,6 +55,7 @@ max_bonus = 0
 max_magic = 0
 max_fire = 0
 max_lightning = 0
+max_dmg_per_weight = 0
 for key, value in weapons_output
   #Max physical damage onto a hash
   if value["atk"][:physical] > max_damage  
@@ -66,7 +67,7 @@ for key, value in weapons_output
     max_magic = value["atk"][:magic]    
     weapons_max.merge!("highest_damage_magic" => {"name" => key, "amount" => max_magic})
   end
-  #finding max fire firedamage
+  #finding max fire fire damage
   if value["atk"][:fire] > max_fire
     max_fire = value["atk"][:fire]    
     weapons_max.merge!("highest_damage_fire" => {"name" => key, "amount" => max_fire})
@@ -80,6 +81,11 @@ for key, value in weapons_output
   if value["bonus"] > max_bonus
     max_bonus = value["bonus"]    
     weapons_max.merge!("highest_bonus" => {"name" => key, "amount" => max_bonus})
+  end
+
+  if value["dmg_per_weight"] > max_dmg_per_weight
+    max_dmg_per_weight = value["dmg_per_weight"]    
+    weapons_max.merge!("max_dmg_per_weight" => {"name" => key, "amount" => max_dmg_per_weight})
   end
 end
 
