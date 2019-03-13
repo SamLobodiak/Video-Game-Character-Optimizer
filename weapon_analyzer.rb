@@ -1,4 +1,3 @@
-
 ####Some of the raw weapon data 'weight' has 0 or nil values.  This creates conflicts.  To solve this I have to.
 # 1. Give the 0 or nil values a value of '0.5' (a float) which is close to the actual weight in the video game.
 
@@ -20,11 +19,6 @@ weapons_output = Hash.new
 temp = 0
 
 #from the raw data, creating a hash of weapon names with their damage characteristics
-<<<<<<< HEAD
-=======
-
-#this 'weapons' variable comes from ./weapons.rb, a long list of raw weapon data
->>>>>>> 4a8a43f708f0cc2ed243b4312986c7a066a7f764
 for x in weapons
   weight = x[:weight]
   # <=25% of equip load yields fast roll, >25% to <=50% yields medium roll, >50% to <=75% yields slow roll
@@ -38,15 +32,10 @@ for x in weapons
     pre_reqs_sum = pre_reqs_sum + y[1]
   end
   
-  # Overall damage is combined physical and elemental damage if there is any
-  overall_damage = 0
-  for key, value in x[:atk]
-    combined_damage = overall_damage + value
-  end
 
-  dmg_per_weight = combined_damage / weight
+  dmg_per_weight = x[:atk][:physical] / weight
   #Outputting all of the data onto an output hash
-  weapons_output.merge!(x[:name] => {"atk" => x[:atk], "combined_damage" => combined_damage, "dmg_per_weight" => dmg_per_weight, "weight" => weight, "pre_reqs_sum" => pre_reqs_sum, "to_fast_roll" => leftover_weight_for_armour_to_fast_roll, "to_med_roll" => leftover_weight_for_armour_to_med_roll, "to_slow_roll" => leftover_weight_for_armour_to_fat_roll})
+  weapons_output.merge!(x[:name] => {"atk" => x[:atk], "dmg_per_weight" => dmg_per_weight, "weight" => weight, "pre_reqs_sum" => pre_reqs_sum, "to_fast_roll" => leftover_weight_for_armour_to_fast_roll, "to_med_roll" => leftover_weight_for_armour_to_med_roll, "to_slow_roll" => leftover_weight_for_armour_to_fat_roll})
 end
 
 # Running find max algorithms on all of the weapons
@@ -54,6 +43,8 @@ weapons_max = Hash.new
 max_damage = 0
 max_bonus = 0
 max_magic = 0
+max_fire = 0
+max_lightning = 0
 for key, value in weapons_output
   #Max physical damage onto a hash
   if value["atk"][:physical] > max_damage  
@@ -65,7 +56,16 @@ for key, value in weapons_output
     max_magic = value["atk"][:magic]    
     weapons_max.merge!("highest_damage_magic" => {"name" => key, "amount" => max_magic})
   end
-
+  #finding max fire firedamage
+  if value["atk"][:fire] > max_fire
+    max_fire = value["atk"][:fire]    
+    weapons_max.merge!("highest_damage_fire" => {"name" => key, "amount" => max_fire})
+  end
+  #finding max lightning damage weapon
+  if value["atk"][:lightning] > max_lightning
+    max_lightning = value["atk"][:lightning]    
+    weapons_max.merge!("highest_damage_lightning" => {"name" => key, "amount" => max_lightning})
+  end
   #Max bonus (critical hit multiplier) and putting it onto a hash
   if value["atk"][:bonus] > max_bonus
     max_bonus = value["atk"][:bonus]    
@@ -78,9 +78,4 @@ for x in weapons_output
  puts " "
 end
 
-<<<<<<< HEAD
 puts weapons_max
-=======
-#Example
-puts weapons_output["Lucerne"]
->>>>>>> 4a8a43f708f0cc2ed243b4312986c7a066a7f764
