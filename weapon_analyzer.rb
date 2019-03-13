@@ -16,26 +16,36 @@ player = {
 
 weapons_output = Hash.new
 
-temp = 0
-
 #from the raw data, creating a hash of weapon names with their damage characteristics
 for x in weapons
   weight = x[:weight]
+  #pre_reqs_sum is the sum of the integers of strength, dexterity, faith, and intelligence required to wield the weapon
+  pre_reqs_sum = 0
+  
   # <=25% of equip load yields fast roll, >25% to <=50% yields medium roll, >50% to <=75% yields slow roll
   leftover_weight_for_armour_to_fast_roll = player[:equip_max] * 0.25 - x[:weight].to_f
   leftover_weight_for_armour_to_med_roll = player[:equip_max] * 0.50 - x[:weight].to_f
   leftover_weight_for_armour_to_fat_roll = player[:equip_max] * 1.00 - x[:weight].to_f
-  #pre_reqs_sum is the sum of the integers of strength, dexterity, faith, and intelligence required to wield the weapon
-  pre_reqs_sum = 0
-  #Of this weapon, iterate through the stat requirements for it
+
+  #Of this weapon, iterate through the stat requirements for it and sum them
   for y in x[:req]
     pre_reqs_sum = pre_reqs_sum + y[1]
   end
-  
 
-  dmg_per_weight = x[:atk][:physical] / weight
+  bonus = x[:atk][:bonus]
+  x[:atk].delete(:bonus)
+
+  #Getting combined damage.  Combined damage is combining physical and elemental damage
+  combined_damage = 0
+  for key, value in x[:atk]
+    combined_damage = combined_damage + value
+  end
+  
+  dmg_per_weight = combined_damage / weight
+  
   #Outputting all of the data onto an output hash
-  weapons_output.merge!(x[:name] => {"atk" => x[:atk], "dmg_per_weight" => dmg_per_weight, "weight" => weight, "pre_reqs_sum" => pre_reqs_sum, "to_fast_roll" => leftover_weight_for_armour_to_fast_roll, "to_med_roll" => leftover_weight_for_armour_to_med_roll, "to_slow_roll" => leftover_weight_for_armour_to_fat_roll})
+  weapons_output.merge!(x[:name] => {"atk" => x[:atk], "dmg_per_weight" => dmg_per_weight, "bonus" => bonus, "weight" => weight, "pre_reqs_sum" => pre_reqs_sum, "to_fast_roll" => leftover_weight_for_armour_to_fast_roll, "to_med_roll" => leftover_weight_for_armour_to_med_roll, "to_slow_roll" => leftover_weight_for_armour_to_fat_roll})
+
 end
 
 # Running find max algorithms on all of the weapons
@@ -67,8 +77,8 @@ for key, value in weapons_output
     weapons_max.merge!("highest_damage_lightning" => {"name" => key, "amount" => max_lightning})
   end
   #Max bonus (critical hit multiplier) and putting it onto a hash
-  if value["atk"][:bonus] > max_bonus
-    max_bonus = value["atk"][:bonus]    
+  if value["bonus"] > max_bonus
+    max_bonus = value["bonus"]    
     weapons_max.merge!("highest_bonus" => {"name" => key, "amount" => max_bonus})
   end
 end
