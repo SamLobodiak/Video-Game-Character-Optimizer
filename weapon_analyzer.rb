@@ -56,6 +56,14 @@ max_magic = 0
 max_fire = 0
 max_lightning = 0
 max_dmg_per_weight = 0
+
+list_phys_dmg = Hash.new
+list_magic_dmg = Hash.new
+list_fire_dmg = Hash.new
+list_lightning_dmg = Hash.new
+list_bonus = Hash.new
+list_dmg_per_weight = Hash.new
+
 for key, value in weapons_output
   #Max physical damage onto a hash
   if value["atk"][:physical] > max_damage  
@@ -87,6 +95,12 @@ for key, value in weapons_output
     max_dmg_per_weight = value["dmg_per_weight"]    
     weapons_max.merge!("max_dmg_per_weight" => {"name" => key, "amount" => max_dmg_per_weight})
   end
+  list_phys_dmg.merge!(key => value["atk"][:physical])
+  list_magic_dmg.merge!(key => value["atk"][:magic])
+  list_fire_dmg.merge!(key => value["atk"][:fire])
+  list_lightning_dmg.merge!(key => value["atk"][:lightning])
+  list_bonus.merge!(key => value[:bonus])
+  list_dmg_per_weight.merge!(key => value["dmg_per_weight"])
 end
 
 for x in weapons_output
@@ -95,3 +109,25 @@ for x in weapons_output
 end
 
 puts weapons_max
+
+#creating the top 10 hash and merging the entire lists onto it
+top_10_weapons_max = Hash.new
+top_10_weapons_max.merge!("phys_max" => list_phys_dmg)
+top_10_weapons_max.merge!("magic_max" => list_magic_dmg)
+top_10_weapons_max.merge!("fire_max" => list_fire_dmg)
+top_10_weapons_max.merge!("lightning_max" => list_lightning_dmg)
+top_10_weapons_max.merge!("bonus_max" => list_bonus)
+top_10_weapons_max.merge!("dmg_per_weight_max" => list_dmg_per_weight)
+
+
+top_10_weapons_max["phys_max"] = top_10_weapons_max["phys_max"].sort_by {|key, value| value}.last(10)
+top_10_weapons_max["magic_max"] = top_10_weapons_max["magic_max"].sort_by {|key, value| value}.last(10)
+top_10_weapons_max["fire_max"] = top_10_weapons_max["fire_max"].sort_by {|key, value| value}.last(10)
+top_10_weapons_max["lightning_max"] = top_10_weapons_max["lightning_max"].sort_by {|key, value| value}.last(10)
+top_10_weapons_max["bonus_max"] = top_10_weapons_max["bonus_max"].sort_by {|key, value| value}.last(10)
+top_10_weapons_max["dmg_per_weight_max"] = top_10_weapons_max["dmg_per_weight_max"].sort_by {|key, value| value}.last(10)
+
+
+puts " "
+
+puts top_10_weapons_max
