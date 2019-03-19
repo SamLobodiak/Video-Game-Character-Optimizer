@@ -1,6 +1,8 @@
+#The raw weapon data is located in './weapons.rb' called 'weapons'
+
+
 ####Some of the raw weapon data 'weight' has 0 or nil values.  This creates conflicts.  To solve this I have to.
 # 1. Give the 0 or nil values a value of '0.5' (a float) which is close to the actual weight in the video game.
-
 for x in weapons
   if x[:weight] == nil || x[:weight] < 1
     x[:weight] = 0.5
