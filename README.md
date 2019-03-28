@@ -1,5 +1,8 @@
 # Video-Game-Character-Optimizer
 
+To run project run the command 'ruby weapon_analyzer.rb'
+
+
 Goals for this project
 
 To iterate through a list of ***melee only weapons*** and output an object showing the best characteristics and the name of the weapon.
